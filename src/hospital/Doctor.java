@@ -298,6 +298,11 @@ PreparedStatement pst=null;
         btnUpdate.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.setEnabled(false);
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         jButton1.setText("Details");
@@ -445,6 +450,19 @@ PreparedStatement pst=null;
             JOptionPane.showConfirmDialog(this,e);
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+       try{
+           con=Connect.ConnectDB();
+           String sql="update Doctor set DoctorName='"+ txtDoctorName.getText() + "',FathersName='"+ txtDoctorFName.getText() + "',Email='"+ txtEmail.getText() + "',ContactNo='"+ txtContact.getText() + "',Qualifications='"+ txtQualification.getText() + "',Specialization='"+ txtSpecialization.getText() + "',Gender='" + cmbGender.getSelectedItem() + "',BloodGroup='"+ cmbBloodGroup.getSelectedItem() + "',DateOfJoining='" + txtDateOfJoining.getText() + "',Address='" + txtAddress.getText() + "' where DoctorID='" + txtDoctorID.getText() + "'";
+           pst=con.prepareStatement(sql);
+           pst.execute();
+           btnUpdate.setEnabled(false);
+
+       }catch(HeadlessException | SQLException e){
+            JOptionPane.showConfirmDialog(this,e);
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
 private void Reset()
 {
     txtDoctorID.setText("");
