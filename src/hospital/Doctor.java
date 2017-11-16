@@ -5,6 +5,7 @@
  */
 package hospital;
 
+import java.awt.HeadlessException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -288,6 +289,11 @@ PreparedStatement pst=null;
         btnDelete.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.setEnabled(false);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         btnUpdate.setText("Update");
@@ -423,6 +429,22 @@ PreparedStatement pst=null;
     private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        try{
+            int e=JOptionPane.showConfirmDialog(null,"Are you sure want to Delete?","Confirmation",JOptionPane.YES_NO_OPTION);
+            if(e==0){
+                con=Connect.ConnectDB();
+                String sql="delete from Doctor where DoctorID='"+txtDoctorID.getText()+"'";
+                pst=con.prepareStatement(sql);
+                pst.execute();
+                JOptionPane.showMessageDialog(this,"Successfully Deleted","Record",JOptionPane.INFORMATION_MESSAGE);
+                Reset();
+            }    
+        }catch(HeadlessException | SQLException e){
+            JOptionPane.showConfirmDialog(this,e);
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 private void Reset()
 {
     txtDoctorID.setText("");
