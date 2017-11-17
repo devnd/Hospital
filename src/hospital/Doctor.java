@@ -457,8 +457,8 @@ PreparedStatement pst=null;
            String sql="update Doctor set DoctorName='"+ txtDoctorName.getText() + "',FathersName='"+ txtDoctorFName.getText() + "',Email='"+ txtEmail.getText() + "',ContactNo='"+ txtContact.getText() + "',Qualifications='"+ txtQualification.getText() + "',Specialization='"+ txtSpecialization.getText() + "',Gender='" + cmbGender.getSelectedItem() + "',BloodGroup='"+ cmbBloodGroup.getSelectedItem() + "',DateOfJoining='" + txtDateOfJoining.getText() + "',Address='" + txtAddress.getText() + "' where DoctorID='" + txtDoctorID.getText() + "'";
            pst=con.prepareStatement(sql);
            pst.execute();
+           JOptionPane.showMessageDialog(this,"Successfully updated","Doctor Record",JOptionPane.INFORMATION_MESSAGE);
            btnUpdate.setEnabled(false);
-
        }catch(HeadlessException | SQLException e){
             JOptionPane.showConfirmDialog(this,e);
         }

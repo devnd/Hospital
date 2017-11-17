@@ -231,7 +231,7 @@ public class Login extends javax.swing.JFrame {
         super.dispose();
         try {
             con = Connect.ConnectDB();
-          String sql= "select * from Users where user= '" + username.getText() + "' and user_password ='" + password.getText() + "'";
+          String sql= "select * from users where user= '" + username.getText() + "' and user_password ='" + password.getText() + "'";
           pst=con.prepareStatement(sql);
           rs= pst.executeQuery();
             if (rs.next()) {
