@@ -40,14 +40,14 @@ public class Splash extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Liberation Serif", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 36)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setText("Hospital Management System");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 473, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 510, -1));
 
-        pgnum.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        pgnum.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         pgnum.setForeground(java.awt.Color.white);
-        pgnum.setText("99%");
+        pgnum.setText("100%");
         jPanel1.add(pgnum, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
 
         pgbar.setBackground(java.awt.Color.white);
