@@ -81,12 +81,13 @@ PreparedStatement pst=null;
         btnNew = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel5.setBackground(new java.awt.Color(58, 83, 155));
+        jPanel5.setBackground(new java.awt.Color(10, 24, 39));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 254));
@@ -129,7 +130,7 @@ PreparedStatement pst=null;
         jLabel10.setText("Blood Group");
 
         cmbGender.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
         cmbGender.setSelectedIndex(-1);
         cmbGender.setBorder(null);
         cmbGender.setOpaque(false);
@@ -330,7 +331,7 @@ PreparedStatement pst=null;
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
         jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
         jLabel1.setText("Doctors");
 
@@ -362,7 +363,7 @@ PreparedStatement pst=null;
         jPanel7.setBackground(new java.awt.Color(52, 73, 94));
 
         btnSave.setBackground(new java.awt.Color(52, 73, 94));
-        btnSave.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnSave.setForeground(java.awt.Color.white);
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/save.png"))); // NOI18N
         btnSave.setText("     Save");
@@ -399,7 +400,7 @@ PreparedStatement pst=null;
         jPanel8.setBackground(new java.awt.Color(52, 73, 94));
 
         btnDelete.setBackground(new java.awt.Color(52, 73, 94));
-        btnDelete.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnDelete.setForeground(java.awt.Color.white);
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/delete.png"))); // NOI18N
         btnDelete.setText("     Delete");
@@ -440,7 +441,7 @@ PreparedStatement pst=null;
         jPanel10.setBackground(new java.awt.Color(52, 73, 94));
 
         btnDetails.setBackground(new java.awt.Color(52, 73, 94));
-        btnDetails.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnDetails.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnDetails.setForeground(java.awt.Color.white);
         btnDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/file.png"))); // NOI18N
         btnDetails.setText("    Details");
@@ -484,7 +485,7 @@ PreparedStatement pst=null;
         });
 
         btnNew.setBackground(new java.awt.Color(52, 73, 94));
-        btnNew.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnNew.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnNew.setForeground(java.awt.Color.white);
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/edit.png"))); // NOI18N
         btnNew.setText("     New");
@@ -523,7 +524,7 @@ PreparedStatement pst=null;
         jPanel9.setBackground(new java.awt.Color(52, 73, 94));
 
         btnUpdate.setBackground(new java.awt.Color(52, 73, 94));
-        btnUpdate.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnUpdate.setForeground(java.awt.Color.white);
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/update.png"))); // NOI18N
         btnUpdate.setText("     Update");
@@ -591,6 +592,13 @@ PreparedStatement pst=null;
                 .addGap(48, 48, 48))
         );
 
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/home.png"))); // NOI18N
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel13MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -598,13 +606,19 @@ PreparedStatement pst=null;
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabel13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel13)
+                .addGap(35, 35, 35)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 630));
@@ -786,6 +800,12 @@ PreparedStatement pst=null;
          jPanel10.setBackground(new Color(52,73,94));
        btnDetails.setBackground(new Color(52,73,94));// TODO add your handling code here:
     }//GEN-LAST:event_btnDetailsMouseExited
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
+     this.dispose();
+     Main frm=new Main();
+     frm.setVisible(true);
+    }//GEN-LAST:event_jLabel13MouseClicked
 private void Reset()
 {
     txtDoctorID.setText("");
@@ -853,6 +873,7 @@ private void Reset()
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
