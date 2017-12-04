@@ -60,7 +60,7 @@ PreparedStatement pst=null;
 
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/add-user.png"))); // NOI18N
         jLabel1.setText("  New User");
 
