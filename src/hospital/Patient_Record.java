@@ -68,9 +68,9 @@ PreparedStatement pst=null;
         jPanel2.setBackground(new java.awt.Color(51, 0, 102));
 
         jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Doctors");
+        jLabel1.setText("Patient Details");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -79,7 +79,7 @@ PreparedStatement pst=null;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addContainerGap(1324, Short.MAX_VALUE))
+                .addContainerGap(1236, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,6 +103,8 @@ PreparedStatement pst=null;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TblDoc.setGridColor(java.awt.Color.pink);
+        TblDoc.setRowHeight(25);
         TblDoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TblDocMouseClicked(evt);
