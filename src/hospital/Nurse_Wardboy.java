@@ -57,6 +57,7 @@ PreparedStatement pst=null;
         btnUpdate = new javax.swing.JButton();
         jPanel18 = new javax.swing.JPanel();
         btnDetails = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -89,11 +90,11 @@ PreparedStatement pst=null;
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 0, 102));
+        jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
         jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.black);
         jLabel1.setText("Nurse/Wardboy");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -101,21 +102,18 @@ PreparedStatement pst=null;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addContainerGap(1248, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1152, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1450, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1450, 40));
 
-        jPanel4.setBackground(new java.awt.Color(219, 10, 91));
+        jPanel4.setBackground(new java.awt.Color(10, 24, 39));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(1, 50, 67));
@@ -125,7 +123,7 @@ PreparedStatement pst=null;
         jPanel14.setBackground(new java.awt.Color(52, 73, 94));
 
         btnNew.setBackground(new java.awt.Color(52, 73, 94));
-        btnNew.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnNew.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnNew.setForeground(java.awt.Color.white);
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/edit.png"))); // NOI18N
         btnNew.setText("     New");
@@ -165,7 +163,7 @@ PreparedStatement pst=null;
         jPanel15.setPreferredSize(new java.awt.Dimension(144, 44));
 
         btnSave.setBackground(new java.awt.Color(52, 73, 94));
-        btnSave.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnSave.setForeground(java.awt.Color.white);
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/save.png"))); // NOI18N
         btnSave.setText("     Save");
@@ -206,7 +204,7 @@ PreparedStatement pst=null;
         jPanel16.setPreferredSize(new java.awt.Dimension(144, 44));
 
         btnDelete.setBackground(new java.awt.Color(52, 73, 94));
-        btnDelete.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnDelete.setForeground(java.awt.Color.white);
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/delete.png"))); // NOI18N
         btnDelete.setText("    Delete");
@@ -237,14 +235,14 @@ PreparedStatement pst=null;
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel17.setBackground(new java.awt.Color(52, 73, 94));
         jPanel17.setPreferredSize(new java.awt.Dimension(144, 44));
 
         btnUpdate.setBackground(new java.awt.Color(52, 73, 94));
-        btnUpdate.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnUpdate.setForeground(java.awt.Color.white);
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/update.png"))); // NOI18N
         btnUpdate.setText("    Update");
@@ -275,14 +273,14 @@ PreparedStatement pst=null;
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel18.setBackground(new java.awt.Color(52, 73, 94));
         jPanel18.setPreferredSize(new java.awt.Dimension(144, 44));
 
         btnDetails.setBackground(new java.awt.Color(52, 73, 94));
-        btnDetails.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        btnDetails.setFont(new java.awt.Font("Raleway Black", 0, 18)); // NOI18N
         btnDetails.setForeground(java.awt.Color.white);
         btnDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/file.png"))); // NOI18N
         btnDetails.setText("    Details");
@@ -312,7 +310,7 @@ PreparedStatement pst=null;
         );
         jPanel18Layout.setVerticalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+            .addComponent(btnDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -344,6 +342,13 @@ PreparedStatement pst=null;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/home.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -351,16 +356,22 @@ PreparedStatement pst=null;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel2)
+                .addGap(45, 45, 45)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(296, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 48, 220, -1));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 254));
         jPanel1.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
@@ -555,7 +566,7 @@ PreparedStatement pst=null;
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, 430, 560));
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 430, 560));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 680));
 
@@ -709,6 +720,12 @@ try{
         jPanel18.setBackground(new Color(52,73,94));
         btnDetails.setBackground(new Color(52,73,94));
     }//GEN-LAST:event_btnDetailsMouseExited
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        this.dispose();
+        Main frm=new Main();
+        frm.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
 private void Reset()
 {
     txtID.setText("");
@@ -776,6 +793,7 @@ private void Reset()
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
