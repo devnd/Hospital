@@ -64,10 +64,10 @@ public class Login extends javax.swing.JFrame {
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
 
         jLabel3.setBackground(java.awt.Color.white);
-        jLabel3.setFont(new java.awt.Font("Playfair Display", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Bitstream Charter", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Login");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 85, 160, 40));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 160, 40));
 
         jPanel5.setBackground(new java.awt.Color(47, 50, 176));
         jPanel5.setPreferredSize(new java.awt.Dimension(40, 30));
@@ -114,13 +114,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Playfair Display", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel2.setForeground(java.awt.Color.white);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/password.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/if_Key_379460.png"))); // NOI18N
         jLabel2.setText("  Password");
 
         password.setBackground(new java.awt.Color(36, 47, 65));
-        password.setFont(new java.awt.Font("Purisa", 0, 18)); // NOI18N
+        password.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         password.setForeground(java.awt.Color.white);
         password.setText("Enter ");
         password.setBorder(null);
@@ -136,14 +136,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Playfair Display", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setForeground(java.awt.Color.white);
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/user_l.png"))); // NOI18N
         jLabel4.setText("  User Name");
 
         username.setBackground(new java.awt.Color(36, 47, 65));
-        username.setFont(new java.awt.Font("Playfair Display", 0, 18)); // NOI18N
+        username.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         username.setForeground(java.awt.Color.white);
         username.setText("Enter the username");
         username.setBorder(null);
@@ -153,7 +153,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Playfair Display", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Bitstream Charter", 0, 24)); // NOI18N
         jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("Login");
 
@@ -199,16 +199,16 @@ public class Login extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(13, 13, 13)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(NewAccount)
-                        .addGap(27, 27, 27))))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +218,9 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
+                                .addGap(53, 53, 53)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
+                                .addGap(46, 46, 46)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)
                                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
