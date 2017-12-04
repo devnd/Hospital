@@ -86,39 +86,39 @@ PreparedStatement pst=null;
         btnUpdate = new javax.swing.JButton();
         DetailsPanel = new javax.swing.JPanel();
         btnDetails = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(900, 670));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 0, 102));
+        jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
         jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Patient");
+        jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.black);
+        jLabel1.setText("Patient Registration");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addContainerGap(772, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(473, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, -1));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 50));
 
-        jPanel4.setBackground(new java.awt.Color(58, 83, 155));
+        jPanel4.setBackground(new java.awt.Color(10, 24, 39));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 254));
@@ -191,6 +191,7 @@ PreparedStatement pst=null;
         txtRemark.setBackground(new java.awt.Color(255, 255, 254));
         txtRemark.setColumns(20);
         txtRemark.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        txtRemark.setLineWrap(true);
         txtRemark.setRows(5);
         txtRemark.setBorder(null);
         jScrollPane2.setViewportView(txtRemark);
@@ -247,13 +248,12 @@ PreparedStatement pst=null;
                         .addGap(68, 68, 68)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator8)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator6)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                                .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbBloodGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jSeparator7)))))
+                            .addComponent(jSeparator6)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                            .addComponent(cmbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbBloodGroup, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator7))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
 
@@ -552,25 +552,38 @@ PreparedStatement pst=null;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/home.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel2)
+                .addGap(42, 42, 42)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 630));
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 890, 630));
 
-        setSize(new java.awt.Dimension(889, 680));
+        setSize(new java.awt.Dimension(889, 678));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -662,7 +675,16 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
+try{
+    con=Connect.ConnectDB();
+    String sql="update Patient set`PatientName`='"+txtPatientName.getText()+"',`FathersName`='"+txtPatientFName.getText()+"',`Address`='"+txtAddress.getText()+"',`ContactNo`='"+txtContact.getText()+"',`Email`='"+txtEmail.getText()+"',`Age`='"+txtAge.getText()+"',`Gender`='"+cmbGender.getSelectedItem()+"',`BloodGroup`='"+cmbBloodGroup.getSelectedItem()+"',`Remark`='"+txtRemark.getText()+"' WHERE  `PatientID`='"+txtPatientID.getText()+"'";
+    pst=con.prepareStatement(sql);
+    pst.execute();
+    JOptionPane.showMessageDialog(this,"Successfully updated","Doctor Record",JOptionPane.INFORMATION_MESSAGE);
+     btnUpdate.setEnabled(false);
+    }catch(HeadlessException | SQLException e){
+            JOptionPane.showConfirmDialog(this,e);
+        }       
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
@@ -721,6 +743,12 @@ PreparedStatement pst=null;
      DetailsPanel.setBackground(new Color(52,73,94));
        btnDetails.setBackground(new Color(52,73,94));
     }//GEN-LAST:event_btnDetailsMouseExited
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    this.dispose();
+    Main frm=new Main();
+    frm.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseClicked
 private void Reset()
 {
     txtPatientID.setText("");
@@ -794,6 +822,7 @@ private void Reset()
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
