@@ -5,8 +5,10 @@
  */
 package hospital;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Color;
 import java.awt.HeadlessException;
+import java.awt.Point;
 import javax.swing.JOptionPane;
 import java.sql.*;
 
@@ -56,6 +58,16 @@ public class Login extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(36, 47, 65));
+        jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel3MouseDragged(evt);
+            }
+        });
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel3MousePressed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(236, 236, 236));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -116,7 +128,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel2.setForeground(java.awt.Color.white);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/if_Key_379460.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/paas.png"))); // NOI18N
         jLabel2.setText("  Password");
 
         password.setBackground(new java.awt.Color(36, 47, 65));
@@ -135,11 +147,16 @@ public class Login extends javax.swing.JFrame {
                 passwordActionPerformed(evt);
             }
         });
+        password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setForeground(java.awt.Color.white);
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/user_l.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital/userr.png"))); // NOI18N
         jLabel4.setText("  User Name");
 
         username.setBackground(new java.awt.Color(36, 47, 65));
@@ -220,8 +237,8 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(53, 53, 53)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)
                                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(7, 7, 7)
@@ -229,11 +246,9 @@ public class Login extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(40, 40, 40)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(14, 14, 14)
@@ -313,6 +328,39 @@ public class Login extends javax.swing.JFrame {
         New_User n=new New_User();
         n.setVisible(true);
     }//GEN-LAST:event_NewAccountMouseClicked
+
+    private void passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordKeyPressed
+      if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+           super.dispose();
+        try {
+            con = Connect.ConnectDB();
+          String sql= "select * from users where user= '" + username.getText() + "' and user_password ='" + password.getText() + "'";
+          pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+            if (rs.next()) {
+                this.hide();
+                Main m=new Main();
+                m.setVisible(true);
+                
+            } else {
+               JOptionPane.showMessageDialog(null, "Login Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
+                username.setText("");
+                password.setText("");
+                this.setVisible(true);
+            }
+        } catch (HeadlessException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }   
+      }
+    }//GEN-LAST:event_passwordKeyPressed
+
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+  
+    }//GEN-LAST:event_jPanel3MousePressed
+
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+
+    }//GEN-LAST:event_jPanel3MouseDragged
 
     /**
      * @param args the command line arguments

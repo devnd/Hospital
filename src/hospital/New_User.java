@@ -269,8 +269,7 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-     Reset_Password r=new Reset_Password();
-     r.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked

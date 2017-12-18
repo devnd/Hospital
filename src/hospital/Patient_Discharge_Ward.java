@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -16,22 +18,17 @@ import net.proteanit.sql.DbUtils;
  *
  * @author dev
  */
-public class Patient_Admit_Room extends javax.swing.JFrame {
+public class Patient_Discharge_Ward extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
     /**
      * Creates new form Doctor
      */
-    public Patient_Admit_Room() {
+    public Patient_Discharge_Ward() {
              initComponents();
-             admit.setVisible(false);
+             
              con=Connect.ConnectDB();
-              fill_combobox();
-             Get_PTbl();
-             Get_DTbl();
-             PTblPaint();
-             DTblPaint();
              setLocationRelativeTo(null);     
               
             
@@ -53,7 +50,6 @@ PreparedStatement pst=null;
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cmbRoomNo = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         cmbGender = new javax.swing.JComboBox();
         jLabel11 = new javax.swing.JLabel();
@@ -74,7 +70,12 @@ PreparedStatement pst=null;
         txtDoctorName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtRemarks = new javax.swing.JTextArea();
-        cmbRoomNo1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        txtWard = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        txtDischarge = new javax.swing.JTextField();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -90,12 +91,8 @@ PreparedStatement pst=null;
         jPanel9 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         Home = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        PTbl = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        DTbl = new javax.swing.JTable();
-        txtAdmitID = new javax.swing.JTextField();
         admit = new javax.swing.JLabel();
+        txtAdmitID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -129,24 +126,10 @@ PreparedStatement pst=null;
         jLabel9.setText("Admit Date");
 
         jLabel2.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        jLabel2.setText("Room");
+        jLabel2.setText("Ward");
 
         jLabel12.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         jLabel12.setText("Doctor id");
-
-        cmbRoomNo.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        cmbRoomNo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        cmbRoomNo.setOpaque(false);
-        cmbRoomNo.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbRoomNoItemStateChanged(evt);
-            }
-        });
-        cmbRoomNo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRoomNoActionPerformed(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         jLabel10.setText("Doctor Name");
@@ -155,6 +138,7 @@ PreparedStatement pst=null;
         cmbGender.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Male", "Female" }));
         cmbGender.setSelectedIndex(-1);
         cmbGender.setBorder(null);
+        cmbGender.setEnabled(false);
         cmbGender.setOpaque(false);
 
         jLabel11.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
@@ -162,31 +146,39 @@ PreparedStatement pst=null;
 
         txtPatientID.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtPatientID.setBorder(null);
+        txtPatientID.setEnabled(false);
 
         txtPatientName.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtPatientName.setBorder(null);
+        txtPatientName.setEnabled(false);
 
         txtEmail.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtEmail.setBorder(null);
+        txtEmail.setEnabled(false);
 
         txtDisease.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtDisease.setBorder(null);
+        txtDisease.setEnabled(false);
 
         txtDoctorID.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtDoctorID.setBorder(null);
+        txtDoctorID.setEnabled(false);
 
         txtAdmitDate.setBorder(null);
         txtAdmitDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txtAdmitDate.setEnabled(false);
         txtAdmitDate.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
 
         cmbBloodGroup.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         cmbBloodGroup.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-" }));
         cmbBloodGroup.setSelectedIndex(-1);
         cmbBloodGroup.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        cmbBloodGroup.setEnabled(false);
         cmbBloodGroup.setOpaque(false);
 
         txtDoctorName.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtDoctorName.setBorder(null);
+        txtDoctorName.setEnabled(false);
 
         txtRemarks.setColumns(20);
         txtRemarks.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
@@ -195,19 +187,25 @@ PreparedStatement pst=null;
         txtRemarks.setBorder(null);
         jScrollPane1.setViewportView(txtRemarks);
 
-        cmbRoomNo1.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        cmbRoomNo1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        cmbRoomNo1.setOpaque(false);
-        cmbRoomNo1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbRoomNo1ItemStateChanged(evt);
-            }
-        });
-        cmbRoomNo1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setBackground(new java.awt.Color(255, 255, 254));
+        jButton1.setFont(new java.awt.Font("Norasi", 1, 24)); // NOI18N
+        jButton1.setText("...");
+        jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRoomNo1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+
+        txtWard.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        txtWard.setBorder(null);
+        txtWard.setEnabled(false);
+
+        jLabel13.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        jLabel13.setText("Discharge Date");
+
+        txtDischarge.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
+        txtDischarge.setBorder(null);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -218,40 +216,6 @@ PreparedStatement pst=null;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmail)
-                                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtDisease, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(cmbRoomNo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cmbRoomNo1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtAdmitDate, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(cmbBloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(48, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel10)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -263,22 +227,61 @@ PreparedStatement pst=null;
                                     .addComponent(txtPatientName, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                                     .addComponent(jSeparator1)
                                     .addComponent(jSeparator2)
-                                    .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel11))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(cmbGender, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel2))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(29, 29, 29)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtEmail)
+                                                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(txtDisease, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                .addComponent(txtWard, javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)))
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addComponent(txtAdmitDate, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
+                                                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGap(1, 1, 1)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(txtDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(26, 26, 26)
+                                                .addComponent(cmbBloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel10))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(65, 65, 65)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDischarge, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(73, 73, Short.MAX_VALUE))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmail, txtPatientID, txtPatientName});
@@ -287,9 +290,11 @@ PreparedStatement pst=null;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -325,41 +330,45 @@ PreparedStatement pst=null;
                     .addComponent(txtAdmitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cmbRoomNo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbRoomNo1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtDischarge, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(jLabel11)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
-        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 400, 600));
+        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 420, 620));
 
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
-        jLabel1.setText("Patient Admit Room");
+        jLabel1.setText("Patient Discharge Ward");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -367,8 +376,8 @@ PreparedStatement pst=null;
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(924, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(872, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -644,225 +653,51 @@ PreparedStatement pst=null;
                 .addComponent(Home)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
-        jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 630));
+        jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 650));
 
-        PTbl.setBackground(new java.awt.Color(255, 255, 254));
-        PTbl.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        PTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "P_ID", "Patient Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        PTbl.setGridColor(java.awt.Color.pink);
-        PTbl.setRowHeight(25);
-        PTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PTblMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(PTbl);
-        if (PTbl.getColumnModel().getColumnCount() > 0) {
-            PTbl.getColumnModel().getColumn(0).setMaxWidth(100);
-        }
-
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 120, 250, -1));
-
-        DTbl.setBackground(new java.awt.Color(255, 255, 254));
-        DTbl.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
-        DTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "D_ID", "Doctor Name"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        DTbl.setGridColor(java.awt.Color.pink);
-        DTbl.setRowHeight(25);
-        DTbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                DTblMouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(DTbl);
-        if (DTbl.getColumnModel().getColumnCount() > 0) {
-            DTbl.getColumnModel().getColumn(0).setMaxWidth(100);
-        }
-
-        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 120, 250, -1));
-
-        txtAdmitID.setBackground(new java.awt.Color(10, 24, 39));
-        txtAdmitID.setFont(new java.awt.Font("Norasi", 0, 24)); // NOI18N
-        txtAdmitID.setForeground(java.awt.Color.white);
-        txtAdmitID.setBorder(null);
-        jPanel5.add(txtAdmitID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 620, 80, 40));
-
-        admit.setFont(new java.awt.Font("Norasi", 0, 24)); // NOI18N
+        admit.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
         admit.setForeground(java.awt.Color.white);
         admit.setText("AdmitID");
-        jPanel5.add(admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, -1, -1));
+        jPanel5.add(admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 590, 100, -1));
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 670));
+        txtAdmitID.setBackground(new java.awt.Color(10, 24, 39));
+        txtAdmitID.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
+        txtAdmitID.setForeground(java.awt.Color.white);
+        txtAdmitID.setBorder(null);
+        jPanel5.add(txtAdmitID, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 620, 50, -1));
 
-        setSize(new java.awt.Dimension(1223, 669));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 690));
+
+        setSize(new java.awt.Dimension(906, 685));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void fill_combobox(){
-        try{
-            String sql="select distinct RoomNo from Room order by RoomNo";
-            pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
-            while(rs.next()){
-                String add=rs.getString("RoomNo");
-                cmbRoomNo.addItem(add);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-    }
-    }
-    private void Get_PTbl(){
-         String sql="select PatientID as 'P_ID', PatientName as 'Patient Name' from Patient order by PatientID";  try{
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         PTbl.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
-    }
-    }
-    
-    private void Get_DTbl(){
-         String sql="select DoctorID as 'D_ID', DoctorName as 'Doctor Name' from Doctor order by DoctorID";  try{
-        
-         pst=con.prepareStatement(sql);
-          rs= pst.executeQuery();
-         DTbl.setModel(DbUtils.resultSetToTableModel(rs));
-         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
-    }
-    }
-    
-    private void PTblPaint()
-    {
-            PTbl.getTableHeader().setOpaque(false);
-             PTbl.getTableHeader().setForeground(new Color (38, 166, 91));
-             PTbl.getTableHeader().setFont(new Font("URW Palladio L",Font.PLAIN,18)); 
-    }
-    
-      private void DTblPaint()
-    {
-            DTbl.getTableHeader().setOpaque(false);
-             DTbl.getTableHeader().setForeground(new Color (38, 166, 91));
-             DTbl.getTableHeader().setFont(new Font("URW Palladio L",Font.PLAIN,18)); 
-    }
       
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
     try{
         con=Connect.ConnectDB();
-        if(txtPatientID.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Patient ID","Error",JOptionPane.ERROR_MESSAGE);
+        if(txtDischarge.getText().equals("")){
+            JOptionPane.showMessageDialog(this,"Please enter the Discharge Date","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if(txtPatientName.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Patient Name","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        if(cmbGender.getSelectedItem().equals("-1")){
-            JOptionPane.showMessageDialog(this,"Please select the Gender","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        if(cmbBloodGroup.getSelectedItem().equals("")){
-            JOptionPane.showMessageDialog(this,"Please select the Blood Group","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        if(txtEmail.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Disease","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        if(txtDisease.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Email ID","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        if(txtAdmitDate.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Admit Date","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-         
-        if(cmbRoomNo.getSelectedItem().equals("")){
-            JOptionPane.showMessageDialog(this,"Please select the Room Number","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(txtDoctorID.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter Doctor ID","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(txtDoctorName.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter the Doctor Name","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Statement st1;
-        st1=con.createStatement();
-        String sql2="Select RoomNo from Room where RoomNo= '" + cmbRoomNo.getSelectedItem()+ "' and RoomStatus='Booked'";
-        rs=st1.executeQuery(sql2);
+        Statement st=con.createStatement();
+        String sql="select AdmitID from Patient_Discharge_Ward where AdmitID='"+txtAdmitID.getText()+"'";
+        rs=st.executeQuery(sql);
         if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Room is already booked","Error", JOptionPane.ERROR_MESSAGE);
-        cmbRoomNo.setSelectedItem("");
-        cmbRoomNo.requestDefaultFocus();
-        return;
-      }
-      
-        Statement stmt;
-       stmt= con.createStatement();
-       String sql1="Select PatientID,AdmitDate from Patient_Admit_Room where PatientID= '" + txtPatientID.getText() + "' and AdmitDate='" + txtAdmitDate + "'";
-      rs=stmt.executeQuery(sql1);
-      if(rs.next()){
-        JOptionPane.showMessageDialog( this, "Record already exists","Error", JOptionPane.ERROR_MESSAGE);
-        return;
-      }
-        
-      
-      String Sql="insert into Patient_Admit_Room (PatientID, Disease, AdmitDate, RoomNo, DoctorId, Remarks)values('"+txtPatientID.getText()+"', '"+txtDisease.getText()+"','"+txtAdmitDate.getText()+"','"+cmbRoomNo.getSelectedItem()+"','"+txtDoctorID.getText()+"','"+txtRemarks.getText()+"')";
-      pst=con.prepareStatement(Sql);
-      pst.execute();
-      String sql="update Room set RoomStatus='Booked' where RoomNo='" + cmbRoomNo.getSelectedItem() +"'";
-      pst=con.prepareStatement(sql);
-      pst.execute();
-     JOptionPane.showMessageDialog(this,"Successfully Saved","Records",JOptionPane.INFORMATION_MESSAGE);
-      btnSave.setEnabled(false);
-    }catch(HeadlessException | SQLException ex){
-            JOptionPane.showMessageDialog(this,ex);
+            JOptionPane.showMessageDialog(this,"Record Already Exists","Error",JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        
+        String Sql="insert into Patient_Discharge_Ward(AdmitID,DischargeDate,Remarks)values('"+txtAdmitID.getText()+"','"+txtDischarge.getText()+"','"+txtRemarks.getText()+"')";
+        pst=con.prepareStatement(Sql);
+        pst.execute();
+        JOptionPane.showMessageDialog(this,"Successfully Saved","Records",JOptionPane.INFORMATION_MESSAGE);
+        btnSave.setEnabled(false);
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, ex);
+    }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -870,60 +705,36 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
-    this.dispose();
-    Patient_Admit_Room_Record frm=new Patient_Admit_Room_Record();
-    frm.setVisible(true);
+    
     }//GEN-LAST:event_btnDetailsActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-    try{
-    int p=JOptionPane.showConfirmDialog(this,"Are you sure want to delete?","Confirm",JOptionPane.YES_NO_OPTION);
-    if(p==0){
-        String sql="delete from Patient_Admit_Room where AdmitID='"+txtAdmitID.getText()+"'";
-        pst=con.prepareStatement(sql);
-        pst.execute();
-        JOptionPane.showMessageDialog(this,"Successfully Deleted","Records",JOptionPane.INFORMATION_MESSAGE);
-        Reset();
-    }
-    } catch (SQLException ex) {
+  try{
+      con=Connect.ConnectDB();
+      int p=JOptionPane.showConfirmDialog(this,"Are you sure want to delete","Confirm",JOptionPane.YES_NO_OPTION);
+      if(p==0){
+          String sql="Delete from Patient_Discharge_Ward where AdmitID='"+txtAdmitID.getText()+"'";
+          pst=con.prepareStatement(sql);
+          pst.execute();
+          JOptionPane.showMessageDialog(this,"Successfully Deleted","Records",JOptionPane.INFORMATION_MESSAGE);
+          Reset();
+      }
+  } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, ex);
-    }     
+    }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-    try{
-        Statement st=con.createStatement();
-        String s= cmbRoomNo.getSelectedItem().toString();
-        String t= cmbRoomNo1.getSelectedItem().toString();
-        String sql="select RoomNo from Room where RoomNo='"+cmbRoomNo.getSelectedItem()+"' and RoomStatus='Booked'";
-        rs=st.executeQuery(sql);
-        if(rs.next()){
-            JOptionPane.showMessageDialog(this,"The Room is Booked","Record",JOptionPane.INFORMATION_MESSAGE);
-            cmbRoomNo.setSelectedItem("");
-            return;
-        }
-           String sql1= " update Patient_Admit_Room set  PatientID='"+ txtPatientID.getText() + "',Disease='"+ txtDisease.getText() + "',AdmitDate='"+ txtAdmitDate.getText() + "',RoomNo='"+ cmbRoomNo.getSelectedItem()+ "',DoctorID='" + txtDoctorID.getText() + "',Remarks='"+ txtRemarks.getText() + "' where AdmitID= '"+ txtAdmitID.getText() +"'";
-            pst=con.prepareStatement(sql1);
-            pst.execute();
-       
-          if (!t.equals(s))
-       {
-            String sql3= "update Room set RoomStatus='Booked' where RoomNo='" + cmbRoomNo.getSelectedItem() + "'";
-            pst=con.prepareStatement(sql3);
-            pst.execute();
-       }
- 
-       if (!t.equals(s))
-       {
-            String sql4= "update Room set RoomStatus='Vacant' where RoomNo='" + cmbRoomNo1.getSelectedItem() + "'";
-            pst=con.prepareStatement(sql4);
-            pst.execute();
-       }
-            JOptionPane.showMessageDialog(this,"Successfully updated","Patient Record",JOptionPane.INFORMATION_MESSAGE);
-            btnUpdate.setEnabled(false);
-            }catch (SQLException ex) {
+try{
+        con=Connect.ConnectDB();
+        String sql="update Patient_Discharge_Ward set AdmitID='"+txtAdmitID.getText()+"',DischargeDate='"+txtDischarge.getText()+"' where AdmitID='"+txtAdmitID.getText()+"'";
+        pst=con.prepareStatement(sql);
+        pst.execute();
+        JOptionPane.showMessageDialog(this,"Successfully updated","Record",JOptionPane.INFORMATION_MESSAGE);
+        btnSave.setEnabled(false);
+    } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, ex);
-    }     
+    } 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jPanel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseEntered
@@ -990,68 +801,11 @@ PreparedStatement pst=null;
         frm.setVisible(true);
     }//GEN-LAST:event_HomeMouseClicked
 
-    private void PTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PTblMouseClicked
-          try{
-            con=Connect.ConnectDB();
-            int row=PTbl.getSelectedRow();
-            String table_click= PTbl.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from Patient where PatientID = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
-            if(rs.next()){
-                String add1=rs.getString("PatientID");
-                txtPatientID.setText(add1);
-                String add2=rs.getString("PatientName");
-                txtPatientName.setText(add2);
-                String add3=rs.getString("Gender");
-                cmbGender.setSelectedItem(add3);
-                 String add9=rs.getString("BloodGroup"); 
-                cmbBloodGroup.setSelectedItem(add9);
-                String add5=rs.getString("Email");
-                txtEmail.setText(add5);
-               
-            }
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(this, e);
-            }
-    }//GEN-LAST:event_PTblMouseClicked
-
-    private void DTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DTblMouseClicked
-         try{
-            con=Connect.ConnectDB();
-            int row=DTbl.getSelectedRow();
-            String table_click= DTbl.getModel().getValueAt(row, 0).toString();
-            String sql= "select * from Doctor where DoctorID = '" + table_click + "'";
-            pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
-            if(rs.next()){
-                String add1=rs.getString("DoctorID");
-                txtDoctorID.setText(add1);
-                String add2=rs.getString("DoctorName");
-                txtDoctorName.setText(add2);
-            
-            
-            }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e);
-            }// TODO add your handling code here:
-    }//GEN-LAST:event_DTblMouseClicked
-
-    private void cmbRoomNoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRoomNoItemStateChanged
-  
-    }//GEN-LAST:event_cmbRoomNoItemStateChanged
-
-    private void cmbRoomNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoomNoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRoomNoActionPerformed
-
-    private void cmbRoomNo1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbRoomNo1ItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRoomNo1ItemStateChanged
-
-    private void cmbRoomNo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoomNo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbRoomNo1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      this.dispose();
+      Patient_Admit_Ward_Record1 frm=new Patient_Admit_Ward_Record1();
+      frm.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 private void Reset()
 {
     txtPatientID.setText("");
@@ -1061,14 +815,16 @@ private void Reset()
     txtEmail.setText("");
     txtDisease.setText("");
     txtAdmitDate.setText("");
-    cmbRoomNo.setSelectedIndex(-1);
+    txtWard.setText("");
     txtDoctorID.setText("");
     txtDoctorName.setText("");
     txtRemarks.setText("");
+    txtDischarge.setText("");
     btnSave.setEnabled(true);
     btnUpdate.setEnabled(false);
     btnDelete.setEnabled(false);
     txtPatientID.requestDefaultFocus();
+   
 
 }
 
@@ -1089,29 +845,33 @@ private void Reset()
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Room.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Room.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Room.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Room.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Patient_Admit_Room().setVisible(true);
+                new Patient_Discharge_Ward().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable DTbl;
     private javax.swing.JLabel Home;
-    private javax.swing.JTable PTbl;
     public javax.swing.JLabel admit;
     public javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetails;
@@ -1120,12 +880,12 @@ private void Reset()
     public javax.swing.JButton btnUpdate;
     public javax.swing.JComboBox cmbBloodGroup;
     public javax.swing.JComboBox cmbGender;
-    public javax.swing.JComboBox cmbRoomNo;
-    public javax.swing.JComboBox cmbRoomNo1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1145,17 +905,18 @@ private void Reset()
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     public javax.swing.JFormattedTextField txtAdmitDate;
     public javax.swing.JTextField txtAdmitID;
+    public javax.swing.JTextField txtDischarge;
     public javax.swing.JTextField txtDisease;
     public javax.swing.JTextField txtDoctorID;
     public javax.swing.JTextField txtDoctorName;
@@ -1163,5 +924,6 @@ private void Reset()
     public javax.swing.JTextField txtPatientID;
     public javax.swing.JTextField txtPatientName;
     public javax.swing.JTextArea txtRemarks;
+    public javax.swing.JTextField txtWard;
     // End of variables declaration//GEN-END:variables
 }
