@@ -141,7 +141,9 @@ public class About extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        super.dispose();
+        this.dispose();
+        Main frm=new Main();
+        frm.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
     /**

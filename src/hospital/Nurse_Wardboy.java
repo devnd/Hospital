@@ -656,7 +656,6 @@ try{
         this.hide();
         Nurse_Wardboy_Record n=new Nurse_Wardboy_Record();
         n.setVisible(true);
-
     }//GEN-LAST:event_btnDetailsActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed

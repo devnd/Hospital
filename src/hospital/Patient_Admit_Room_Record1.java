@@ -57,6 +57,8 @@ PreparedStatement pst=null;
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblDoc = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -67,25 +69,47 @@ PreparedStatement pst=null;
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
         jLabel1.setText("Patient Admit Room Details");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 0, -1, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addContainerGap(961, Short.MAX_VALUE))
+        jPanel7.setBackground(new java.awt.Color(47, 50, 176));
+        jPanel7.setPreferredSize(new java.awt.Dimension(40, 30));
+
+        jLabel9.setFont(new java.awt.Font("URW Palladio L", 1, 24)); // NOI18N
+        jLabel9.setForeground(java.awt.Color.white);
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("X");
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
+        jLabel9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel9KeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
+
+        jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 0, 40, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 40));
 
@@ -132,7 +156,7 @@ PreparedStatement pst=null;
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 740));
 
-        setSize(new java.awt.Dimension(1325, 739));
+        setSize(new java.awt.Dimension(1308, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -172,7 +196,7 @@ PreparedStatement pst=null;
                 d.txtDoctorName.setText(add11);
                
       
-                d.admit.setVisible(true);
+                d.admit.setVisible(false);
                 d.btnUpdate.setEnabled(true);
                 d.btnDelete.setEnabled(true);
               
@@ -181,6 +205,16 @@ PreparedStatement pst=null;
                 JOptionPane.showMessageDialog(this, e);
             }
     }//GEN-LAST:event_TblDocMouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        this.hide();
+        Patient_Discharge_Room frm=new Patient_Discharge_Room();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed
+
+    }//GEN-LAST:event_jLabel9KeyPressed
 
 
     /**
@@ -252,8 +286,14 @@ PreparedStatement pst=null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TblDoc;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

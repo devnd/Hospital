@@ -18,14 +18,14 @@ import net.proteanit.sql.DbUtils;
  *
  * @author dev
  */
-public class Patient_Admit_Ward_Record1 extends javax.swing.JFrame {
+public class Patient_Discharge_Room_Record extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
     /**
      * Creates new form Doctor
      */
-    public Patient_Admit_Ward_Record1() {
+    public Patient_Discharge_Room_Record() {
              initComponents();
              con=Connect.ConnectDB();
              Get_Data();
@@ -37,14 +37,15 @@ PreparedStatement pst=null;
     }
  
     private void Get_Data(){
-       String sql="Select AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Ward.WardName as 'WardName',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',Patient_Admit_Ward.Remarks as 'Remarks' from Ward,Doctor,Patient,Patient_Admit_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID order by AdmitID";
-         try{
-               pst=con.prepareStatement(sql);
-               rs=pst.executeQuery();
-               TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
-        }catch(Exception e){
+        try{
+         String sql="Select ID as 'Discharge ID', Patient_Admit_Room.AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Room.RoomNo as 'Room No',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',DischargeDate as 'Discharge Date',Patient_Discharge_Room.Remarks as 'Remarks' from Room,Doctor,Patient,Patient_Admit_Room,Patient_Discharge_Room where Room.RoomNo=Patient_Admit_Room.RoomNo and Doctor.DoctorID=Patient_Admit_Room.DoctorID and Patient.PatientID=Patient_Admit_Room.PatientID  and Patient_Admit_Room.AdmitID= Patient_Discharge_Room.AdmitID order by DischargeDate";
+         pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+         TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+          
+}
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,8 +58,8 @@ PreparedStatement pst=null;
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblDoc = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -74,44 +75,42 @@ PreparedStatement pst=null;
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
-        jLabel1.setText("Patient Admit Ward Details");
+        jLabel1.setText("Patient Discharge Room Details");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 0, -1, 40));
 
-        jPanel5.setBackground(new java.awt.Color(47, 50, 176));
-        jPanel5.setPreferredSize(new java.awt.Dimension(40, 30));
+        jPanel6.setBackground(new java.awt.Color(47, 50, 176));
+        jPanel6.setPreferredSize(new java.awt.Dimension(40, 30));
 
-        jLabel7.setFont(new java.awt.Font("URW Palladio L", 1, 24)); // NOI18N
-        jLabel7.setForeground(java.awt.Color.white);
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("X");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel8.setFont(new java.awt.Font("URW Palladio L", 1, 24)); // NOI18N
+        jLabel8.setForeground(java.awt.Color.white);
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("X");
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                jLabel8MouseClicked(evt);
             }
         });
-        jLabel7.addKeyListener(new java.awt.event.KeyAdapter() {
+        jLabel8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLabel7KeyPressed(evt);
+                jLabel8KeyPressed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 40, 40));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 40, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 40));
 
@@ -158,64 +157,72 @@ PreparedStatement pst=null;
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 740));
 
-        setSize(new java.awt.Dimension(1316, 739));
+        setSize(new java.awt.Dimension(1323, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TblDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDocMouseClicked
-            try{
+          try{
             con=Connect.ConnectDB();
-            int row=TblDoc.getSelectedRow();
+            int row= TblDoc.getSelectedRow();
             String table_click= TblDoc.getModel().getValueAt(row, 0).toString();
-            String sql="Select * from Ward,Doctor,Patient,Patient_Admit_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID and AdmitID="+ table_click +""; 
+             String sql="Select * from Room,Doctor,Patient,Patient_Admit_Room,Patient_Discharge_Room where Room.RoomNo=Patient_Admit_Room.RoomNo and Doctor.DoctorID=Patient_Admit_Room.DoctorID and Patient.PatientID=Patient_Admit_Room.PatientID and Patient_Admit_Room.AdmitID=Patient_Discharge_Room.AdmitID and ID=" + table_click + "";   
             pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
+            rs=  pst.executeQuery();
             if(rs.next()){
                 this.hide();
-                Patient_Discharge_Ward d=new Patient_Discharge_Ward();
-                d.setVisible(true);
-                 String add1=rs.getString("AdmitID");
-                d.txtDischargeID.setText(add1);
-                String add2=rs.getString("PatientID");
-                d.txtPatientID.setText(add2);
-                String add12=rs.getString("PatientName");
-                d.txtPatientName.setText(add12);
-                 String add4=rs.getString("Gender");
-                d.cmbGender.setSelectedItem(add4);
-                String add8=rs.getString("BloodGroup");
-                d.cmbBloodGroup.setSelectedItem(add8);
-                 String add10=rs.getString("Email");
-                d.txtEmail.setText(add10);
-                String add3=rs.getString("Disease");
-                d.txtDisease.setText(add3);
-                String add5=rs.getString("AdmitDate");
-                d.txtAdmitDate.setText(add5);
-                String add6=rs.getString("WardName");
-                d.txtWard.setText(add6);
-                String add7=rs.getString("DoctorID");
-                d.txtDoctorID.setText(add7);
-                String add11=rs.getString("DoctorName");
-                d.txtDoctorName.setText(add11);
+                Patient_Discharge_Room frm = new Patient_Discharge_Room();
+                frm.setVisible(true);
+                String add1=rs.getString("DoctorID");
+                frm.txtDoctorID.setText(add1);
+                String add2=rs.getString("Doctorname");
+                frm.txtDoctorName.setText(add2);
+                String add3=rs.getString("PatientID");
+                frm.txtPatientID.setText(add3);
+                String add5=rs.getString("PatientName");
+                frm.txtPatientName.setText(add5);
+                String add6=rs.getString("Gender");
+                frm.cmbGender.setSelectedItem(add6);
+                String add7=rs.getString("BloodGroup");
+                frm.cmbBloodGroup.setSelectedItem(add7);
+                String add9=rs.getString("Disease");
+                frm.txtDisease.setText(add9);
+                String add11=rs.getString("AdmitDate");
+                frm.txtAdmitDate.setText(add11);
+                String add14=rs.getString("RoomNo");
+                frm.txtRoom.setText(add14);
+                int add16 = rs.getInt("AdmitID");
+                String add17= Integer.toString(add16);
+                frm.txtAdmitID.setText(add17);
+                String add18=rs.getString("DischargeDate");
+                frm.txtDischarge.setText(add18);
+                String add19=rs.getString("Remarks");
+                 frm.txtRemarks.setText(add19);
+                 String add15=rs.getString("Email");
+                 frm.txtEmail.setText(add15);
+                 int add20 = rs.getInt("ID");
+                String add21= Integer.toString(add20);
+                frm.txtDischargeID.setText(add21);
+               
+                frm.btnDelete.setEnabled(true);
+                frm.btnSave.setEnabled(false);
+                frm.btnUpdate.setEnabled(true);
                 
-      
-                d.btnUpdate.setEnabled(true);
-                d.btnDelete.setEnabled(true);
-             
-            }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e);
-            }
+                      }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }
     }//GEN-LAST:event_TblDocMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         this.hide();
-        Patient_Discharge_Ward frm=new Patient_Discharge_Ward();
+        Patient_Discharge_Room frm=new Patient_Discharge_Room();
         frm.setVisible(true);
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_jLabel8MouseClicked
 
-    private void jLabel7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel7KeyPressed
+    private void jLabel8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel8KeyPressed
 
-    }//GEN-LAST:event_jLabel7KeyPressed
+    }//GEN-LAST:event_jLabel8KeyPressed
 
 
     /**
@@ -235,46 +242,14 @@ PreparedStatement pst=null;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Room_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Room_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Room_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Room_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -311,7 +286,7 @@ PreparedStatement pst=null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Patient_Admit_Ward_Record1().setVisible(true);
+                new Patient_Discharge_Room_Record().setVisible(true);
             }
         });
     }
@@ -320,9 +295,11 @@ PreparedStatement pst=null;
     private javax.swing.JTable TblDoc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

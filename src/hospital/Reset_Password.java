@@ -326,7 +326,9 @@ public class Reset_Password extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.dispose();        // TODO add your handling code here:
+        this.dispose(); 
+        Main frm=new Main();
+        frm.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**

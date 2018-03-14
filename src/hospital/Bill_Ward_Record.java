@@ -18,14 +18,14 @@ import net.proteanit.sql.DbUtils;
  *
  * @author dev
  */
-public class Patient_Admit_Ward_Record1 extends javax.swing.JFrame {
+public class Bill_Ward_Record extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
     /**
      * Creates new form Doctor
      */
-    public Patient_Admit_Ward_Record1() {
+    public Bill_Ward_Record() {
              initComponents();
              con=Connect.ConnectDB();
              Get_Data();
@@ -37,14 +37,15 @@ PreparedStatement pst=null;
     }
  
     private void Get_Data(){
-       String sql="Select AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Ward.WardName as 'WardName',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',Patient_Admit_Ward.Remarks as 'Remarks' from Ward,Doctor,Patient,Patient_Admit_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID order by AdmitID";
-         try{
-               pst=con.prepareStatement(sql);
-               rs=pst.executeQuery();
-               TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
-        }catch(Exception e){
+        try{
+                 String sql="Select BillNo as 'Bill No.',Patient_Discharge_Ward.ID as 'Discharge ID', Patient_Admit_Ward.AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Ward.WardName as 'Ward',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',DischargeDate as 'Discharge Date',Bill_Ward.BedCharges as ' Charges',Bill_Ward.ServiceCharges as 'Service Charges',Bill_Ward.BillingDate as 'Billing Date',PaymentMode as 'Payement Mode',TotalCharges as 'Total Charges',ChargesPaid as 'Charges Paid',DueCharges as 'Due Charges',NoOfDays as 'No. Of Days',TotalBedCharges as 'Total Room Charges' from Ward,Doctor,Patient,Patient_Admit_Ward,Patient_Discharge_Ward,Bill_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID  and Patient_Admit_Ward.AdmitID= Patient_Discharge_Ward.AdmitID and Bill_Ward.DischargeID=Patient_Discharge_Ward.ID  order by BillingDate"; 
+       pst=con.prepareStatement(sql);
+          rs= pst.executeQuery();
+         TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+          
+}
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +75,7 @@ PreparedStatement pst=null;
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
         jLabel1.setForeground(java.awt.Color.black);
-        jLabel1.setText("Patient Admit Ward Details");
+        jLabel1.setText("Patient Discharge Room Details");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 0, -1, 40));
 
         jPanel5.setBackground(new java.awt.Color(47, 50, 176));
@@ -149,67 +150,94 @@ PreparedStatement pst=null;
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1320, Short.MAX_VALUE)
+            .addGap(0, 1330, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 740, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 740));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 740));
 
-        setSize(new java.awt.Dimension(1316, 739));
+        setSize(new java.awt.Dimension(1315, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TblDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDocMouseClicked
-            try{
+ try{
             con=Connect.ConnectDB();
-            int row=TblDoc.getSelectedRow();
-            String table_click= TblDoc.getModel().getValueAt(row, 0).toString();
-            String sql="Select * from Ward,Doctor,Patient,Patient_Admit_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID and AdmitID="+ table_click +""; 
-            pst=con.prepareStatement(sql);
-            rs=pst.executeQuery();
+            int row= TblDoc.getSelectedRow();
+            String table_click= TblDoc.getModel().getValueAt(row, 0).toString(); 
+            String sql="Select *,Patient_Discharge_Ward.ID as 'Discharge ID', Patient_Admit_Ward.AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Ward.WardName as 'Ward',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',DischargeDate as 'Discharge Date',Bill_Ward.BedCharges as 'Bed Charges',Bill_Ward.ServiceCharges as 'Service Charges',Bill_Ward.BillingDate as 'Billing Date',PaymentMode as 'Payement Mode',TotalCharges as 'Total Charges',ChargesPaid as 'Charges Paid',DueCharges as 'Due Charges',NoOfDays as 'No. Of Days',TotalBedCharges as 'Total Bed Charges' from Ward,Doctor,Patient,Patient_Admit_Ward,Patient_Discharge_Ward,Bill_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID  and Patient_Admit_Ward.AdmitID= Patient_Discharge_Ward.AdmitID and Bill_Ward.DischargeID=Patient_Discharge_Ward.ID  order by BillingDate"; 
+             pst=con.prepareStatement(sql);
+            rs=  pst.executeQuery();
             if(rs.next()){
                 this.hide();
-                Patient_Discharge_Ward d=new Patient_Discharge_Ward();
-                d.setVisible(true);
-                 String add1=rs.getString("AdmitID");
-                d.txtDischargeID.setText(add1);
-                String add2=rs.getString("PatientID");
-                d.txtPatientID.setText(add2);
-                String add12=rs.getString("PatientName");
-                d.txtPatientName.setText(add12);
-                 String add4=rs.getString("Gender");
-                d.cmbGender.setSelectedItem(add4);
-                String add8=rs.getString("BloodGroup");
-                d.cmbBloodGroup.setSelectedItem(add8);
-                 String add10=rs.getString("Email");
-                d.txtEmail.setText(add10);
-                String add3=rs.getString("Disease");
-                d.txtDisease.setText(add3);
-                String add5=rs.getString("AdmitDate");
-                d.txtAdmitDate.setText(add5);
-                String add6=rs.getString("WardName");
-                d.txtWard.setText(add6);
-                String add7=rs.getString("DoctorID");
-                d.txtDoctorID.setText(add7);
-                String add11=rs.getString("DoctorName");
-                d.txtDoctorName.setText(add11);
+                Bill_Ward frm = new Bill_Ward();
+                frm.setVisible(true);
+                String add1=rs.getString("PatientID");
+                frm.txtPatientID.setText(add1);
+                String add2=rs.getString("PatientName");
+                frm.txtPatientName.setText(add2);
+                String add3=rs.getString("Gender");
+                frm.txtGender.setText(add3);
+                String add5=rs.getString("BloodGroup");
+                frm.txtBloodGroup.setText(add5);
+                String add6=rs.getString("Disease");
+                frm.txtDisease.setText(add6);
+                String add7=rs.getString("AdmitDate");
+                frm.txtAdmitDate.setText(add7);
+                String add9=rs.getString("WardName");
+                frm.txtWardName.setText(add9);
+                String add11=rs.getString("DoctorID");
+                frm.txtDoctorID.setText(add11);
+                String add14=rs.getString("DoctorName");
+                frm.txtDoctorName.setText(add14);
+                String add15=rs.getString("DischargeID");
+                frm.txtDischargeID.setText(add15);
+                String add16=rs.getString("DischargeDate");
+                frm.txtDischargeDate.setText(add16);
+                String add17=rs.getString("BedCharges");
+                frm.txtBedCharges.setText(add17);
+                String add18=rs.getString("NoOfDays");
+                frm.txtDays.setText(add18);
+                String add19=rs.getString("TotalBedCharges");
+                frm.txtTBedCharges.setText(add19);
+                String add20=rs.getString("ServiceCharges");
+                frm.txtServiceCharges.setText(add20);
+                String add21=rs.getString("BillingDate");
+                frm.txtBillingDate.setText(add21);
+                String add22=rs.getString("PaymentMode");
+                frm.cmbPaymentMode.setSelectedItem(add22);
+                String add23=rs.getString("TotalCharges");
+                frm.txtTotalCharges.setText(add23);
+                String add24=rs.getString("ChargesPaid");
+                frm.txtPaid.setText(add24);
+                String add25=rs.getString("DueCharges");
+                frm.txtDueCharges.setText(add25);
+                String add26=rs.getString("BillNo");
+                frm.txtBillNo.setText(add26);
                 
-      
-                d.btnUpdate.setEnabled(true);
-                d.btnDelete.setEnabled(true);
+                
+                  String add27=rs.getString("AdmitID");
+                frm.txtAdmitID.setText(add27);
              
-            }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e);
-            }
+                
+                
+                
+                
+                frm.btnUpdate.setEnabled(true);
+                frm.btnDelete.setEnabled(true);
+                frm.btnSave.setEnabled(false);
+                 }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }     
     }//GEN-LAST:event_TblDocMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        this.hide();
-        Patient_Discharge_Ward frm=new Patient_Discharge_Ward();
+        this.dispose();
+        Bill_Ward frm=new Bill_Ward();
         frm.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -235,14 +263,78 @@ PreparedStatement pst=null;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bill_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bill_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bill_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Patient_Admit_Ward_Record1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bill_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -311,7 +403,7 @@ PreparedStatement pst=null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Patient_Admit_Ward_Record1().setVisible(true);
+                new Bill_Ward_Record().setVisible(true);
             }
         });
     }

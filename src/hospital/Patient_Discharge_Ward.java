@@ -27,7 +27,10 @@ PreparedStatement pst=null;
      */
     public Patient_Discharge_Ward() {
              initComponents();
-             
+             discharge.setVisible(false);
+             admit.setVisible(false);
+             txtAdmitID.setVisible(false);
+             txtDischarge.setVisible(false);
              con=Connect.ConnectDB();
              setLocationRelativeTo(null);     
               
@@ -91,8 +94,10 @@ PreparedStatement pst=null;
         jPanel9 = new javax.swing.JPanel();
         btnUpdate = new javax.swing.JButton();
         Home = new javax.swing.JLabel();
-        admit = new javax.swing.JLabel();
+        discharge = new javax.swing.JLabel();
+        txtDischargeID = new javax.swing.JTextField();
         txtAdmitID = new javax.swing.JTextField();
+        admit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -215,6 +220,11 @@ PreparedStatement pst=null;
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(65, 65, 65)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,21 +277,15 @@ PreparedStatement pst=null;
                                                 .addComponent(cmbBloodGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(jLabel12)
                                     .addComponent(jLabel10))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(65, 65, 65)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDischarge, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(73, 73, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDischarge, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmail, txtPatientID, txtPatientName});
@@ -361,7 +365,7 @@ PreparedStatement pst=null;
                 .addGap(14, 14, 14))
         );
 
-        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 420, 620));
+        jPanel5.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 420, 620));
 
         jPanel2.setBackground(new java.awt.Color(236, 236, 236));
 
@@ -658,16 +662,27 @@ PreparedStatement pst=null;
 
         jPanel5.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 220, 650));
 
-        admit.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
-        admit.setForeground(java.awt.Color.white);
-        admit.setText("AdmitID");
-        jPanel5.add(admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 590, 100, -1));
+        discharge.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
+        discharge.setForeground(java.awt.Color.white);
+        discharge.setText("DischargeID");
+        jPanel5.add(discharge, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, 140, -1));
+
+        txtDischargeID.setBackground(new java.awt.Color(10, 24, 39));
+        txtDischargeID.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
+        txtDischargeID.setForeground(java.awt.Color.white);
+        txtDischargeID.setBorder(null);
+        jPanel5.add(txtDischargeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 540, 50, -1));
 
         txtAdmitID.setBackground(new java.awt.Color(10, 24, 39));
         txtAdmitID.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
         txtAdmitID.setForeground(java.awt.Color.white);
         txtAdmitID.setBorder(null);
-        jPanel5.add(txtAdmitID, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 620, 50, -1));
+        jPanel5.add(txtAdmitID, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 620, 50, -1));
+
+        admit.setFont(new java.awt.Font("NanumMyeongjo", 0, 24)); // NOI18N
+        admit.setForeground(java.awt.Color.white);
+        admit.setText("AdmitID");
+        jPanel5.add(admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 590, 100, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 690));
 
@@ -683,14 +698,14 @@ PreparedStatement pst=null;
             return;
         }
         Statement st=con.createStatement();
-        String sql="select AdmitID from Patient_Discharge_Ward where AdmitID='"+txtAdmitID.getText()+"'";
+        String sql="select AdmitID from Patient_Discharge_Ward where AdmitID='"+txtDischargeID.getText()+"'";
         rs=st.executeQuery(sql);
         if(rs.next()){
             JOptionPane.showMessageDialog(this,"Record Already Exists","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        String Sql="insert into Patient_Discharge_Ward(AdmitID,DischargeDate,Remarks)values('"+txtAdmitID.getText()+"','"+txtDischarge.getText()+"','"+txtRemarks.getText()+"')";
+        String Sql="insert into Patient_Discharge_Ward(AdmitID,DischargeDate,Remarks)values('"+txtDischargeID.getText()+"','"+txtDischarge.getText()+"','"+txtRemarks.getText()+"')";
         pst=con.prepareStatement(Sql);
         pst.execute();
         JOptionPane.showMessageDialog(this,"Successfully Saved","Records",JOptionPane.INFORMATION_MESSAGE);
@@ -705,7 +720,9 @@ PreparedStatement pst=null;
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailsActionPerformed
-    
+        this.dispose();
+        Patient_Discharge_Ward_Record frm =new Patient_Discharge_Ward_Record();
+        frm.setVisible(true);
     }//GEN-LAST:event_btnDetailsActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -713,11 +730,13 @@ PreparedStatement pst=null;
       con=Connect.ConnectDB();
       int p=JOptionPane.showConfirmDialog(this,"Are you sure want to delete","Confirm",JOptionPane.YES_NO_OPTION);
       if(p==0){
-          String sql="Delete from Patient_Discharge_Ward where AdmitID='"+txtAdmitID.getText()+"'";
+          String sql="Delete from Patient_Discharge_Ward where AdmitID='"+txtDischargeID.getText()+"'";
           pst=con.prepareStatement(sql);
           pst.execute();
           JOptionPane.showMessageDialog(this,"Successfully Deleted","Records",JOptionPane.INFORMATION_MESSAGE);
           Reset();
+          txtAdmitID.setText("");
+          txtDischargeID.setText("");
       }
   } catch (SQLException ex) {
         JOptionPane.showMessageDialog(null, ex);
@@ -727,8 +746,8 @@ PreparedStatement pst=null;
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 try{
         con=Connect.ConnectDB();
-        String sql="update Patient_Discharge_Ward set AdmitID='"+txtAdmitID.getText()+"',DischargeDate='"+txtDischarge.getText()+"' where AdmitID='"+txtAdmitID.getText()+"'";
-        pst=con.prepareStatement(sql);
+        String sql= "update Patient_Discharge_Ward set AdmitID="+ txtAdmitID.getText() + ",DischargeDate='"+ txtDischarge.getText() + "',Remarks='"+ txtRemarks.getText() + "' where ID='"+txtDischargeID.getText()+"'";
+            pst=con.prepareStatement(sql);
         pst.execute();
         JOptionPane.showMessageDialog(this,"Successfully updated","Record",JOptionPane.INFORMATION_MESSAGE);
         btnSave.setEnabled(false);
@@ -880,6 +899,7 @@ private void Reset()
     public javax.swing.JButton btnUpdate;
     public javax.swing.JComboBox cmbBloodGroup;
     public javax.swing.JComboBox cmbGender;
+    public javax.swing.JLabel discharge;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -917,6 +937,7 @@ private void Reset()
     public javax.swing.JFormattedTextField txtAdmitDate;
     public javax.swing.JTextField txtAdmitID;
     public javax.swing.JTextField txtDischarge;
+    public javax.swing.JTextField txtDischargeID;
     public javax.swing.JTextField txtDisease;
     public javax.swing.JTextField txtDoctorID;
     public javax.swing.JTextField txtDoctorName;

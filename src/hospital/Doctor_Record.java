@@ -10,8 +10,8 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.table.TableModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -22,6 +22,9 @@ public class Doctor_Record extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
+   
+
+
     /**
      * Creates new form Doctor
      */
@@ -33,6 +36,8 @@ PreparedStatement pst=null;
             TblDoc.getTableHeader().setOpaque(false);
              TblDoc.getTableHeader().setForeground(new Color (38, 166, 91));
              TblDoc.getTableHeader().setFont(new Font("URW Palladio L",Font.PLAIN,18)); 
+             
+             
              
     }
  
@@ -57,9 +62,11 @@ PreparedStatement pst=null;
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblDoc = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(10, 24, 39));
@@ -73,6 +80,38 @@ PreparedStatement pst=null;
         jLabel1.setForeground(java.awt.Color.black);
         jLabel1.setText("Doctors Details");
 
+        jPanel5.setBackground(new java.awt.Color(47, 50, 176));
+        jPanel5.setPreferredSize(new java.awt.Dimension(40, 30));
+
+        jLabel7.setFont(new java.awt.Font("URW Palladio L", 1, 24)); // NOI18N
+        jLabel7.setForeground(java.awt.Color.white);
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("X");
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jLabel7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel7KeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 2, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -80,14 +119,22 @@ PreparedStatement pst=null;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addContainerGap(1098, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1066, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 8, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 40));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 40));
+
+        jPanel1.setBackground(new java.awt.Color(10, 24, 39));
+        jPanel1.setForeground(new java.awt.Color(10, 24, 39));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
 
@@ -107,6 +154,7 @@ PreparedStatement pst=null;
         TblDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TblDoc.setGridColor(java.awt.Color.pink);
         TblDoc.setRowHeight(25);
+        TblDoc.setSurrendersFocusOnKeystroke(true);
         TblDoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TblDocMouseClicked(evt);
@@ -114,30 +162,16 @@ PreparedStatement pst=null;
         });
         jScrollPane1.setViewportView(TblDoc);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1230, 528));
-
-        jPanel1.setBackground(new java.awt.Color(10, 24, 39));
-        jPanel1.setForeground(new java.awt.Color(10, 24, 39));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1320, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 1230, 370));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 740));
 
-        setSize(new java.awt.Dimension(1325, 739));
+        setSize(new java.awt.Dimension(1319, 741));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TblDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDocMouseClicked
-            try{
+        try{
             con=Connect.ConnectDB();
             int row=TblDoc.getSelectedRow();
             String table_click= TblDoc.getModel().getValueAt(row, 0).toString();
@@ -174,11 +208,23 @@ PreparedStatement pst=null;
                 d.btnDelete.setEnabled(true);
                 d.btnSave.setEnabled(false);
             }
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e);
-            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
     }//GEN-LAST:event_TblDocMouseClicked
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        this.hide();
+        Doctor frm=new Doctor();
+        frm.setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel7KeyPressed
+
+    }//GEN-LAST:event_jLabel7KeyPressed
+
+    
+    
 
     /**
      * @param args the command line arguments
@@ -223,10 +269,12 @@ PreparedStatement pst=null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TblDoc;
+    public javax.swing.JTable TblDoc;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel5;
+    public javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

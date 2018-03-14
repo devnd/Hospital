@@ -28,6 +28,8 @@ PreparedStatement pst=null;
     public Patient_Admit_Ward() {
              initComponents();
               con=Connect.ConnectDB();
+              txtAdmitID.setVisible(false);
+              admit.setVisible(false);
               cmbWardName.setSelectedIndex(-1);
               cmbWardName1.setVisible(false);
               fill_combobox();
@@ -98,7 +100,7 @@ PreparedStatement pst=null;
         jScrollPane3 = new javax.swing.JScrollPane();
         DTbl = new javax.swing.JTable();
         txtAdmitID = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
+        admit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -171,6 +173,11 @@ PreparedStatement pst=null;
 
         txtEmail.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtEmail.setBorder(null);
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         txtDisease.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         txtDisease.setBorder(null);
@@ -728,10 +735,10 @@ PreparedStatement pst=null;
         txtAdmitID.setBorder(null);
         jPanel5.add(txtAdmitID, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 620, 80, 40));
 
-        jLabel13.setFont(new java.awt.Font("Norasi", 0, 24)); // NOI18N
-        jLabel13.setForeground(java.awt.Color.white);
-        jLabel13.setText("AdmitID");
-        jPanel5.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, -1, -1));
+        admit.setFont(new java.awt.Font("Norasi", 0, 24)); // NOI18N
+        admit.setForeground(java.awt.Color.white);
+        admit.setText("AdmitID");
+        jPanel5.add(admit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 620, -1, -1));
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, 670));
 
@@ -855,7 +862,7 @@ PreparedStatement pst=null;
       }
         
       
-      String Sql="insert into Patient_Admit_Ward (PatientID, Disease, AdmitDate, WardName, DoctorId, Remarks)values('"+txtPatientID.getText()+"', '"+txtDisease.getText()+"','"+txtAdmitDate.getText()+"','"+cmbWardName.getSelectedItem()+"','"+txtDoctorID.getText()+"','"+txtRemarks.getText()+"')";
+      String Sql="insert into Patient_Admit_Ward (PatientID, Disease, AdmitDate, WardName, DoctorID, Remarks)values('"+txtPatientID.getText()+"', '"+txtDisease.getText()+"','"+txtAdmitDate.getText()+"','"+cmbWardName.getSelectedItem()+"','"+txtDoctorID.getText()+"','"+txtRemarks.getText()+"')";
       pst=con.prepareStatement(Sql);
       pst.execute();
       String sql="update Ward set NoOfBeds=NoOfBeds - 1 where WardName='" + cmbWardName.getSelectedItem() + "'";;
@@ -897,7 +904,11 @@ PreparedStatement pst=null;
  try{
        
             con=Connect.ConnectDB();
-      
+        String sql= "update Patient_Admit_Ward set PatientID='"+txtPatientID.getText()+"',Disease='"+txtDisease.getText()+"',AdmitDate='"+txtAdmitDate.getText()+"',WardName='"+cmbWardName.getSelectedItem()+"',DoctorID='" +txtDoctorID.getText()+"',Remarks='"+txtRemarks.getText()+"' where AdmitID='"+txtAdmitID.getText() +"'";
+            pst=con.prepareStatement(sql);
+            pst.execute();
+            JOptionPane.showMessageDialog(this,"Successfully updated","Patient Record",JOptionPane.INFORMATION_MESSAGE);
+          
        Statement stmt1;
        stmt1= con.createStatement();
        String s= cmbWardName.getSelectedItem().toString();
@@ -914,9 +925,6 @@ PreparedStatement pst=null;
       }
       }
       
-            String sql= " update Patient_Admit_Ward set PatientID='"+ txtPatientID.getText() + "',Disease='"+ txtDisease.getText() + "',AdmitDate='"+ txtAdmitDate.getText() + "',WardName='"+ cmbWardName.getSelectedItem()+ "',DoctorID='" + txtDoctorID.getText() + "',Remarks='"+ txtRemarks.getText() + "' where AdmitID= '"+ txtAdmitID.getText() +"'";
-            pst=con.prepareStatement(sql);
-            pst.execute();
            if (!t.equals(s))
        {
              String sql3= "update Ward set NoOfBeds=NoOfBeds - 1 where WardName='" + cmbWardName.getSelectedItem() + "'";
@@ -929,8 +937,7 @@ PreparedStatement pst=null;
              pst=con.prepareStatement(sql4);
             pst.execute();
        }
-            JOptionPane.showMessageDialog(this,"Successfully updated","Patient Record",JOptionPane.INFORMATION_MESSAGE);
-            btnUpdate.setEnabled(false);
+         btnUpdate.setEnabled(false);
 
         }catch(HeadlessException | SQLException ex){
             JOptionPane.showMessageDialog(this,ex);
@@ -1063,6 +1070,10 @@ PreparedStatement pst=null;
     private void cmbWardName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbWardName1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbWardName1ActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 private void Reset()
 {
     txtAdmitID.setText("");
@@ -1126,6 +1137,7 @@ private void Reset()
     private javax.swing.JTable DTbl;
     private javax.swing.JLabel Home;
     private javax.swing.JTable PTbl;
+    public javax.swing.JLabel admit;
     public javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnNew;
@@ -1139,7 +1151,6 @@ private void Reset()
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

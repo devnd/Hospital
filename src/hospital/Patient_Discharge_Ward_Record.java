@@ -1,17 +1,16 @@
-package hospital;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package hospital;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -19,14 +18,14 @@ import net.proteanit.sql.DbUtils;
  *
  * @author dev
  */
-public class Nurse_Wardboy_Record extends javax.swing.JFrame {
+public class Patient_Discharge_Ward_Record extends javax.swing.JFrame {
 Connection con=null;
 ResultSet rs=null;
 PreparedStatement pst=null;
     /**
      * Creates new form Doctor
      */
-    public Nurse_Wardboy_Record() {
+    public Patient_Discharge_Ward_Record() {
              initComponents();
              con=Connect.ConnectDB();
              Get_Data();
@@ -38,14 +37,15 @@ PreparedStatement pst=null;
     }
  
     private void Get_Data(){
-        String sql="select ID, Name as 'Name',Category,Address,ContactNo as 'Contact No',Email as 'Email ID',Qualification,BloodGroup as 'Blood Group',DateofJoining as 'Joining Date' from Nurse_WardBoy order by Name";
-        try{
+      try{
+               String sql="Select ID as 'Discharge ID', Patient_Admit_Ward.AdmitID as 'Admit ID',Patient.PatientID as 'Patient ID',Patient.PatientName as 'Patient Name',Patient.Gender as 'Gender',Patient.BloodGroup as 'Blood Group',Disease,AdmitDate as 'Admit Date',Ward.WardName as 'Ward Name',Doctor.DoctorID as 'Doctor ID',DoctorName as 'Doctor Name',DischargeDate as 'Discharge Date' from Ward,Doctor,Patient,Patient_Admit_Ward,Patient_Discharge_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID  and Patient_Admit_Ward.AdmitID= Patient_Discharge_Ward.AdmitID order by DischargeDate";
                pst=con.prepareStatement(sql);
-               rs=pst.executeQuery();
-               TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
-        }catch(Exception e){
+         rs= pst.executeQuery();
+         TblDoc.setModel(DbUtils.resultSetToTableModel(rs));
+         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
-        }
+          
+}
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,20 +62,21 @@ PreparedStatement pst=null;
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblDoc = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(10, 24, 39));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(10, 24, 39));
-        jPanel2.setFont(new java.awt.Font("Playfair Display Black", 1, 24)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(236, 236, 236));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setFont(new java.awt.Font("Playfair Display Black", 0, 24)); // NOI18N
-        jLabel1.setForeground(java.awt.Color.white);
-        jLabel1.setText("Nurse/WardBoy Details");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 12, -1, -1));
+        jLabel1.setForeground(java.awt.Color.black);
+        jLabel1.setText("Patient Discharge Ward Details");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 0, -1, 40));
 
         jPanel5.setBackground(new java.awt.Color(47, 50, 176));
         jPanel5.setPreferredSize(new java.awt.Dimension(40, 30));
@@ -102,20 +103,22 @@ PreparedStatement pst=null;
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 0, 50, 50));
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 0, 40, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1450, 50));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 40));
 
-        TblDoc.setBorder(null);
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+
+        TblDoc.setAutoCreateRowSorter(true);
         TblDoc.setFont(new java.awt.Font("Norasi", 0, 18)); // NOI18N
         TblDoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,8 +131,8 @@ PreparedStatement pst=null;
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TblDoc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TblDoc.setGridColor(java.awt.Color.pink);
-        TblDoc.setIntercellSpacing(new java.awt.Dimension(5, 5));
         TblDoc.setRowHeight(25);
         TblDoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,54 +141,91 @@ PreparedStatement pst=null;
         });
         jScrollPane1.setViewportView(TblDoc);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 1290, 528));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1230, 528));
 
-        setSize(new java.awt.Dimension(1311, 739));
+        jPanel1.setBackground(new java.awt.Color(10, 24, 39));
+        jPanel1.setForeground(new java.awt.Color(10, 24, 39));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1320, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 740, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1320, 740));
+
+        setSize(new java.awt.Dimension(1325, 739));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void TblDocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDocMouseClicked
-    try{
-        con=Connect.ConnectDB();
-        int row=TblDoc.getSelectedRow();
-        String Tbl_click=TblDoc.getModel().getValueAt(row,0).toString();
-        String sql= "select * from Nurse_WardBoy where ID = '" + Tbl_click + "'";
-           pst=con.prepareStatement(sql);
+ try{
+            con=Connect.ConnectDB();
+            int row= TblDoc.getSelectedRow();
+            String table_click= TblDoc.getModel().getValueAt(row, 0).toString();
+             String sql="Select * from Ward,Doctor,Patient,Patient_Admit_Ward,Patient_Discharge_Ward where Ward.WardName=Patient_Admit_Ward.WardName and Doctor.DoctorID=Patient_Admit_Ward.DoctorID and Patient.PatientID=Patient_Admit_Ward.PatientID and Patient_Admit_Ward.AdmitID=Patient_Discharge_Ward.AdmitID and ID=" + table_click + "";   
+             pst=con.prepareStatement(sql);
             rs=  pst.executeQuery();
             if(rs.next()){
                 this.hide();
-                Nurse_Wardboy n= new Nurse_Wardboy();
-                n.setVisible(true);
-                String add1=rs.getString("ID");
-                n.txtID.setText(add1);
-                String add2=rs.getString("Name");
-                n.txtName.setText(add2);
-                String add3=rs.getString("Category");
-                n.cmbCategory.setSelectedItem(add3);
-                String add5=rs.getString("Address");
-                n.txtAddress.setText(add5);
-                String add6 = rs.getString("ContactNo");
-                n.txtContact.setText(add6);
-                String add4=rs.getString("Email");
-                n.txtEmail.setText(add4);
-                String add7=rs.getString("Qualification");
-                n.txtQualification.setText(add7);
-                String add9=rs.getString("BloodGroup");
-                n.cmbBloodGroup.setSelectedItem(add9);
-                String add15=rs.getString("DateofJoining");
-                n.txtDateOfJoining.setText(add15);
-                n.btnUpdate.setEnabled(true);
-                n.btnDelete.setEnabled(true);
-                n.btnSave.setEnabled(false);
-            }
-    }catch(Exception e){
-        JOptionPane.showMessageDialog(this, e);
-    }
+                Patient_Discharge_Ward frm = new Patient_Discharge_Ward();
+                frm.setVisible(true);
+                String add1=rs.getString("DoctorID");
+                frm.txtDoctorID.setText(add1);
+                String add2=rs.getString("Doctorname");
+                frm.txtDoctorName.setText(add2);
+                String add3=rs.getString("PatientID");
+                frm.txtPatientID.setText(add3);
+                String add5=rs.getString("PatientName");
+                frm.txtPatientName.setText(add5);
+                String add6=rs.getString("Gender");
+                frm.cmbGender.setSelectedItem(add6);
+                String add7=rs.getString("BloodGroup");
+                frm.cmbBloodGroup.setSelectedItem(add7);
+                String add9=rs.getString("Disease");
+                frm.txtDisease.setText(add9);
+                String add11=rs.getString("AdmitDate");
+                frm.txtAdmitDate.setText(add11);
+                String add14=rs.getString("WardName");
+                frm.txtWard.setText(add14);
+                int add16 = rs.getInt("AdmitID");
+                String add17= Integer.toString(add16);
+                frm.txtAdmitID.setText(add17);
+                String add18=rs.getString("DischargeDate");
+                frm.txtDischarge.setText(add18);
+                String add19=rs.getString("Remarks");
+                 frm.txtRemarks.setText(add19);
+                 int add20 = rs.getInt("ID");
+                String add21= Integer.toString(add20);
+                frm.txtDischargeID.setText(add21);
+                 String add22=rs.getString("Email");
+                 frm.txtEmail.setText(add22);
+               
+                 
+                 
+                 
+                  frm.discharge.setVisible(false);
+             frm.admit.setVisible(false);
+             frm.txtAdmitID.setVisible(false);
+             frm.txtDischarge.setVisible(false);
+                frm.btnDelete.setEnabled(true);
+                frm.btnSave.setEnabled(false);
+                frm.btnUpdate.setEnabled(true);
+                
+                      }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,ex);
+        }      
     }//GEN-LAST:event_TblDocMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         this.hide();
-        Nurse_Wardboy frm=new Nurse_Wardboy();
+        Patient_Discharge_Ward frm=new Patient_Discharge_Ward();
         frm.setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -211,14 +251,46 @@ PreparedStatement pst=null;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Nurse_Wardboy_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Nurse_Wardboy_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Nurse_Wardboy_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Nurse_Wardboy_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Patient_Discharge_Ward_Record.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -255,7 +327,7 @@ PreparedStatement pst=null;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Nurse_Wardboy_Record().setVisible(true);
+                new Patient_Discharge_Ward_Record().setVisible(true);
             }
         });
     }
@@ -264,6 +336,7 @@ PreparedStatement pst=null;
     private javax.swing.JTable TblDoc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
