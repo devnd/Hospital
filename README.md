@@ -6,4 +6,4 @@
 ### Backend-MySql Server
 
 ### Splash Screen
-![Screen](https://github.com/devnd/Hospital/tree/master/hospital/Images/Picture1)
+![alt text](Images/Picture1.jpg "Splash_Screen")
