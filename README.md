@@ -5,3 +5,5 @@
 ### Frontend-Java
 ### Backend-MySql Server
 
+### Splash Screen
+![alt text][Picture1]
